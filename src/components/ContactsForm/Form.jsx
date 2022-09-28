@@ -1,25 +1,16 @@
 import { FormStyle, Label, Input, Btn } from './Form.styled';
-import { useDispatch, useSelector } from 'react-redux';
-import { addContact } from 'redux/contactsSlice';
-import { getContacts } from 'redux/selectors';
+import { useCreateContactMutation } from 'redux/contactsSlice';
 
 export const UserForm = () => {
-  const dispatch = useDispatch();
-  const checkContacts = useSelector(getContacts);
+  const [createContact] = useCreateContactMutation();
 
   const handleSubmit = event => {
     event.preventDefault();
     const form = event.target;
     const formName = event.target.elements.name.value;
-    const formNumber = event.target.elements.number.value;
-    if (
-      checkContacts.find(
-        cont => cont.name.toLowerCase() === formName.toLowerCase()
-      )
-    ) {
-      return alert(`${formName} is already in contacts`);
-    }
-    dispatch(addContact(formName, formNumber));
+    const formNumber = event.target.elements.number.value.toString();
+
+    createContact(formName, formNumber);
     form.reset();
   };
 
