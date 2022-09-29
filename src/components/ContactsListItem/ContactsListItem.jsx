@@ -12,7 +12,7 @@ export const ContactListItem = ({id,name,phone,avatar}) => {
   return (
     <ListItem key={id}>
       <ListItemText>
-        <b>{name}</b> : {phone}
+        <b>{name}</b> : {phone.slice(0,15)}
       </ListItemText>
       <Btn type="button" onClick={() => deleteContact(id)}>
         Delete

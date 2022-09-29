@@ -1,20 +1,31 @@
+import { Route, Routes } from 'react-router-dom';
+import { lazy } from 'react';
 import { UserForm } from './ContactsForm/Form';
 import { ContactList } from './Contacts/ContactsList';
-import { Filter } from './Filter/Filter';
+
 import { Box } from './Box';
-import { useFetchContactsQuery } from 'redux/contactsSlice';
+
+import { Toaster } from 'react-hot-toast';
+import { SharedLayout } from './SharedLayout/SharedLayout';
+import { ContactsPage } from 'Pages/Contacts';
+import { AddContactPage } from 'Pages/AddContactForm';
 
 export const App = () => {
-  const { data: contacts } = useFetchContactsQuery();
 
-  console.log(contacts);
   return (
-    <Box width={380} listStyle="none" ml="45px" mt="20px" p="0">
-      <h1>Phonebook</h1>
-      <UserForm />
-      <h2>Contacts</h2>
-      <Filter />
-      <ContactList contacts={contacts} />
-    </Box>
+    <>
+      <Toaster position="top-right" reverseOrder={true} />
+      <Routes>
+        <Route path="/" element={<SharedLayout />}>
+          <Route index element={<ContactsPage />} />
+        </Route>
+        <Route path='/AddContactForm"' element={<AddContactPage />} />
+      </Routes>
+    </>
   );
 };
+
+
+        
+          // <UserForm />
+       

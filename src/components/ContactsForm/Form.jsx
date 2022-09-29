@@ -1,16 +1,23 @@
 import { FormStyle, Label, Input, Btn } from './Form.styled';
-import { useCreateContactMutation } from 'redux/contactsSlice';
+import {
+  useCreateContactMutation,
+  useFetchContactsQuery,
+} from 'redux/contactsSlice';
+import toast from 'react-hot-toast';
 
 export const UserForm = () => {
   const [createContact] = useCreateContactMutation();
+const { data: contacts } = useFetchContactsQuery();
 
   const handleSubmit = event => {
     event.preventDefault();
     const form = event.target;
-    const formName = event.target.elements.name.value;
-    const formNumber = event.target.elements.number.value.toString();
-
-    createContact(formName, formNumber);
+    const name = event.target.elements.name.value;
+    const number = event.target.elements.number.value.toString();
+if (contacts?.find(cont => cont.name.toLowerCase() === name.toLowerCase())) {
+  return toast.error(`${name} is already in contacts`);
+}
+    createContact({ name, number });
     form.reset();
   };
 
