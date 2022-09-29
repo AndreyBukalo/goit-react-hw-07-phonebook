@@ -1,19 +1,20 @@
 import { Suspense } from 'react';
 import { Outlet } from 'react-router-dom';
-import { NavLink } from 'react-router-dom';
+
+import { Container, SideBar, LinkNav } from './SharedLayoutStyled';
 
 export const SharedLayout = () => {
   return (
-    <div>
-      <aside>
+    <Container>
+      <SideBar>
         <nav>
-        <NavLink to="/">Contacts</NavLink>
-          <NavLink to="/AddContactForm">Add new contact</NavLink>
+          <LinkNav to="/contacts">Contacts</LinkNav>
+          <LinkNav to="/AddContactForm">Add Contact</LinkNav>
         </nav>
-      </aside>
+      </SideBar>
       <Suspense fallback={<p>Loading...</p>}>
         <Outlet />
       </Suspense>
-    </div>
+    </Container>
   );
 };

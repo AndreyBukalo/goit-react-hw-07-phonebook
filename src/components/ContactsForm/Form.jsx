@@ -1,3 +1,5 @@
+import { NavLink } from "react-router-dom";
+import { useNavigate } from 'react-router-dom';
 import { FormStyle, Label, Input, Btn } from './Form.styled';
 import {
   useCreateContactMutation,
@@ -6,6 +8,7 @@ import {
 import toast from 'react-hot-toast';
 
 export const UserForm = () => {
+  const navigate = useNavigate();
   const [createContact] = useCreateContactMutation();
 const { data: contacts } = useFetchContactsQuery();
 
@@ -18,33 +21,39 @@ if (contacts?.find(cont => cont.name.toLowerCase() === name.toLowerCase())) {
   return toast.error(`${name} is already in contacts`);
 }
     createContact({ name, number });
+    navigate('/contacts', { replace: true });
     form.reset();
   };
 
   return (
-    <FormStyle onSubmit={handleSubmit}>
-      <Label htmlFor="name">
-        Name
-        <Input
-          type="text"
-          name="name"
-          pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
-          title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
-          required
-        />
-      </Label>
-      <br />
-      <Label htmlFor="number">
-        Number
-        <Input
-          type="tel"
-          name="number"
-          pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
-          title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
-          required
-        />
-      </Label>
-      <Btn type="Submit">Add to Contacts</Btn>
-    </FormStyle>
+    <>
+      <FormStyle onSubmit={handleSubmit}>
+        <Label htmlFor="name">
+          Name
+          <Input
+            type="text"
+            name="name"
+            pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
+            title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
+            required
+          />
+        </Label>
+        <br />
+        <Label htmlFor="number">
+          Number
+          <Input
+            type="tel"
+            name="number"
+            pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
+            title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
+            required
+          />
+        </Label>
+
+        <Btn type="Submit">
+          Add to Contacts
+        </Btn>
+      </FormStyle>
+    </>
   );
 };

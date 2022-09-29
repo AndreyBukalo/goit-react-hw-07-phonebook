@@ -10,18 +10,16 @@ export const Filter = () => {
     dispatch(setFilter(filtred));
   };
   return (
-    <Box display="flex" pl="30px">
-      <Label>
-        Find contacts by name
+    <Box display="flex" pl="20px">
+      <Label>Contacts</Label>
         <Input
-          type="text"
-          name="filter"
-          onChange={onChange}
-          pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
-          title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
-          required
-        />
-      </Label>
+        type="text"
+        name="filter"
+        onChange={onChange}
+        pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
+        title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
+        required
+      />
     </Box>
   );
 };
