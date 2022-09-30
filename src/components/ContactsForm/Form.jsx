@@ -1,6 +1,5 @@
-import { NavLink } from "react-router-dom";
 import { useNavigate } from 'react-router-dom';
-import { FormStyle, Label, Input, Btn } from './Form.styled';
+import { FormStyle, Label, Input, Btn, Header } from './Form.styled';
 import {
   useCreateContactMutation,
   useFetchContactsQuery,
@@ -10,23 +9,26 @@ import toast from 'react-hot-toast';
 export const UserForm = () => {
   const navigate = useNavigate();
   const [createContact] = useCreateContactMutation();
-const { data: contacts } = useFetchContactsQuery();
+  const { data: contacts } = useFetchContactsQuery();
 
   const handleSubmit = event => {
     event.preventDefault();
     const form = event.target;
     const name = event.target.elements.name.value;
     const number = event.target.elements.number.value.toString();
-if (contacts?.find(cont => cont.name.toLowerCase() === name.toLowerCase())) {
-  return toast.error(`${name} is already in contacts`);
-}
+    if (
+      contacts?.find(cont => cont.name.toLowerCase() === name.toLowerCase())
+    ) {
+      return toast.error(`${name} is already in contacts`);
+    }
     createContact({ name, number });
-    navigate('/contacts', { replace: true });
+    navigate('/', { replace: true });
     form.reset();
   };
 
   return (
     <>
+      <Header>Please enter contact details</Header>
       <FormStyle onSubmit={handleSubmit}>
         <Label htmlFor="name">
           Name
@@ -50,9 +52,7 @@ if (contacts?.find(cont => cont.name.toLowerCase() === name.toLowerCase())) {
           />
         </Label>
 
-        <Btn type="Submit">
-          Add to Contacts
-        </Btn>
+        <Btn type="Submit">Add to Contacts</Btn>
       </FormStyle>
     </>
   );

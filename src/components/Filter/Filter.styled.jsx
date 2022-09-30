@@ -1,23 +1,35 @@
 import styled from '@emotion/styled';
+import { BsSearch } from 'react-icons/bs';
 
+export const Container = styled.div`
+  display: flex;
+  position: relative;
+  margin: 25px 0px 50px 40px;
+`;
 export const Label = styled.label`
-  font-size: 16px;
-  font-weight:500;
-  margin-right:42px;
-  align-self:center;
+  font-size: 25px;
+  font-weight: 500;
+  margin-right: 42px;
+  align-self: center;
   color: #e65252;
-  display:block;
+  display: block;
 `;
 export const Input = styled.input`
   padding: 6px;
   font-size: 17px;
-  border-width: 1px;
+  border: none;
+  outline: none;
+  border-bottom: 1px solid;
   border-color: #cccccc;
   background-color: #ffffff;
   color: #000000;
-  border-style: solid;
-  border-radius: 47px;
-  box-shadow: 0px 0px 5px rgba(66, 66, 66, 0.75);
-  text-shadow: 0px 0px 5px rgba(66, 66, 66, 0.75);
 `;
 
+export const SearchIcon = styled(BsSearch)`
+  position: absolute;
+  left: 42%;
+  top: 20%;
+  color: gray;
+  width: 18px;
+  height: 18px;
+`;

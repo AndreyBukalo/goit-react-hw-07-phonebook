@@ -1,14 +1,9 @@
-import { UserForm } from "components/ContactsForm/Form"
-
-
-
-
-
+import { UserForm } from 'components/ContactsForm/Form';
 
 export const AddContactPage = () => {
-    return (
-        <section>
-            <UserForm/>
-        </section>
-    )
-}
+  return (
+    <section>
+      <UserForm />
+    </section>
+  );
+};

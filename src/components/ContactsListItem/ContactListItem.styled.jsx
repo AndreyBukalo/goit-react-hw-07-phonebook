@@ -1,51 +1,53 @@
 import styled from '@emotion/styled';
-
-
-  
+import { AiOutlineDelete } from 'react-icons/ai';
 
 export const ListItem = styled.li`
   display: flex;
+  align-items: center;
   margin: 0;
-  margin-bottom: 8px;
+  width: 480px;
+  padding: 6px;
+  margin-bottom: 12px;
+  border-bottom: 1px solid gray;
 `;
-export const ListItemText = styled.p`
-display:flex;
+export const UserBox = styled.div`
+  display: flex;
+  align-items: center;
+  width: 250px;
   margin: 0;
 `;
 
-
-export const ItemName=styled.span`
-  
-`
+export const ItemName = styled.span`
+  margin-left: 15px;
+  font-weight: 500;
+`;
 export const ItemNumber = styled.span`
+  margin-right: 5px;
+  color: gray;
+  display: flex;
+  justify-content: flex-end;
+  width: 180px;
+`;
 
-margin-right:5px;`;
-
+export const DeleteIcon = styled(AiOutlineDelete)`
+  width: 45px;
+  height: 22px;
+  scale: 1;
+  transition: ease-in 0.5s;
+  &:hover {
+    color: #e65252;
+    scale: 1.1;
+    transition: ease-in 0.5s;
+  }
+`;
 export const Btn = styled.button`
   height: 25px;
-  background: linear-gradient(to right, #196bca, #6433e0);
-  background-color: #196bca;
-  color: #fff;
- 
-  font-size: 18px;
-  font-style: normal;
-  text-decoration: none;
-  padding: 14px 15px;
-  border: 0px solid #000;
-  border-radius: 10px;
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
-  :hover {
-    background: linear-gradient(to right, #5482d0, #7d5ee3);
-    background-color: #5482d0;
-  }
-  
+  border: none;
+  background-color: transparent;
 `;
 
 export const Avatar = styled.img`
   width: 60px;
-  border: 1px solid gray;
-  border-radius: 25% 25% 25% 25% / 25% 25% 25% 25%;
+  border: 3px solid gray;
+  border-radius: 50%;
 `;

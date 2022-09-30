@@ -1,33 +1,28 @@
-
 import { useDeleteContactMutation } from 'redux/contactsSlice';
-
 
 import {
   ListItem,
-  ListItemText,
+  UserBox,
   Btn,
   Avatar,
+  DeleteIcon,
   ItemName,
   ItemNumber,
 } from './ContactListItem.styled';
 
-
-export const ContactListItem = ({id,name,phone,avatar}) => {
+export const ContactListItem = ({ id, name, phone, avatar }) => {
   const [deleteContact] = useDeleteContactMutation();
 
-  
   return (
     <ListItem key={id}>
-      <Avatar src={avatar} alt="Contact avatar" />
-      <ListItemText>
+      <UserBox>
+        <Avatar src={avatar} alt="Contact avatar" />
         <ItemName>{name}</ItemName>
-        <ItemNumber>{phone.slice(0, 15)}</ItemNumber>
-      </ListItemText>
+      </UserBox>
       <ItemNumber>{phone.slice(0, 15)}</ItemNumber>
       <Btn type="button" onClick={() => deleteContact(id)}>
-        Delete
+        <DeleteIcon />
       </Btn>
     </ListItem>
   );
 };
-

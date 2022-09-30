@@ -1,5 +1,5 @@
-import { Label, Input } from './Filter.styled';
-import { Box } from 'components/Box';
+import { Label, Input, Container, SearchIcon } from './Filter.styled';
+
 import { setFilter } from 'redux/filterSlice';
 import { useDispatch } from 'react-redux';
 
@@ -10,9 +10,9 @@ export const Filter = () => {
     dispatch(setFilter(filtred));
   };
   return (
-    <Box display="flex" pl="20px">
+    <Container>
       <Label>Contacts</Label>
-        <Input
+      <Input
         type="text"
         name="filter"
         onChange={onChange}
@@ -20,6 +20,7 @@ export const Filter = () => {
         title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
         required
       />
-    </Box>
+      <SearchIcon />
+    </Container>
   );
 };
