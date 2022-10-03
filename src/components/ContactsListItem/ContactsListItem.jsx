@@ -13,7 +13,10 @@ import {
 
 export const ContactListItem = ({ id, name, phone, avatar }) => {
   const [deleteContact, { isLoading: isDeleting }] = useDeleteContactMutation();
-
+  if (avatar === '') {
+    avatar =
+      'https://phonebook.sydney.edu.au/static/media/thumbnail-person.ac59bd47.svg';
+  }
   return (
     <ListItem key={id}>
       <UserBox>

@@ -9,6 +9,7 @@ export const Header = styled.h1`
 export const FormStyle = styled.form`
   display: flex;
   flex-direction: column;
+  justify-content: space-around;
   height: 280px;
   width: 480px;
   margin-left: 40px;
