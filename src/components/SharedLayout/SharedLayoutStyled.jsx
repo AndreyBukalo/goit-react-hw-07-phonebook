@@ -5,12 +5,12 @@ import { BsBook } from 'react-icons/bs';
 
 export const Container = styled.div`
   display: flex;
-  height: 100vh;
+  min-height: 100vh;
 `;
 
 export const SideBar = styled.aside`
   min-width: 180px;
-  height: 100%;
+
   display: flex;
   flex-direction: column;
 

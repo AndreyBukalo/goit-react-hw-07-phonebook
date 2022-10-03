@@ -13,8 +13,8 @@ export const ContactList = ({ contacts }) => {
       contact.name.toLowerCase().includes(filter.toLowerCase())
     );
   };
-
   const visibleContacts = filtredContacts();
+
   return (
     <>
       <Suspense fallback={<p>Loading...</p>}>

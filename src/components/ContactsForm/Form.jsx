@@ -8,7 +8,7 @@ import toast from 'react-hot-toast';
 
 export const UserForm = () => {
   const navigate = useNavigate();
-  const [createContact] = useCreateContactMutation();
+  const [createContact, { isLoading: isAdding }] = useCreateContactMutation();
   const { data: contacts } = useFetchContactsQuery();
 
   const handleSubmit = event => {
@@ -21,9 +21,12 @@ export const UserForm = () => {
     ) {
       return toast.error(`${name} is already in contacts`);
     }
-    createContact({ name, number });
-    navigate('/', { replace: true });
-    form.reset();
+    if (!isAdding) {
+      createContact({ name, number });
+      navigate('/', { replace: true });
+      form.reset();
+      return toast.success(`${name} adding to your contacts...`);
+    }
   };
 
   return (

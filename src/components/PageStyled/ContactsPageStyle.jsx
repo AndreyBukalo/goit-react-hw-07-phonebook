@@ -9,3 +9,7 @@ export const Header = styled.h1`
 
   justify-content: center;
 `;
+
+export const SpinerWrap = styled.div`
+  margin-left: 125px;
+`;

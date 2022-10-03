@@ -1,5 +1,6 @@
 import { useDeleteContactMutation } from 'redux/contactsSlice';
 
+import { Puff } from 'react-loader-spinner';
 import {
   ListItem,
   UserBox,
@@ -11,7 +12,7 @@ import {
 } from './ContactListItem.styled';
 
 export const ContactListItem = ({ id, name, phone, avatar }) => {
-  const [deleteContact] = useDeleteContactMutation();
+  const [deleteContact, { isLoading: isDeleting }] = useDeleteContactMutation();
 
   return (
     <ListItem key={id}>
@@ -21,7 +22,17 @@ export const ContactListItem = ({ id, name, phone, avatar }) => {
       </UserBox>
       <ItemNumber>{phone.slice(0, 15)}</ItemNumber>
       <Btn type="button" onClick={() => deleteContact(id)}>
-        <DeleteIcon />
+        {isDeleting ? (
+          <Puff
+            height="17"
+            width="18"
+            radisu={1}
+            color="#e65252"
+            visible={true}
+          />
+        ) : (
+          <DeleteIcon />
+        )}
       </Btn>
     </ListItem>
   );
